@@ -51,10 +51,9 @@ class Dog
     sql = "SELECT * FROM dogs WHERE id = ?"
     result = DB[:conn].execute(sql, id)[0]
     Dog.new({result[0], result[1]}, result[2])
-    
   end
   
-   def self.find_or_create_by(name:, breed:)
+  def self.find_or_create_by(name:, breed:)
     dog = DB[:conn].execute("SELECT * FROM dogs WHERE name = ? AND breed = ?", name, breed)
     if !dog.empty?
       dog_data = dog[0]
@@ -68,23 +67,18 @@ class Dog
   def self.new_from_db(row)
     new_dog = Dog.new(row[0], row[1], row[2])
     new_dog
-   # new_student = self.new(row)
-   # new_student.id = row[0]
-   # new_student.name =  row[1]
-   # new_student.grade = row[2]
-   # new_student  # return the newly created instance
-end
-
-  def self.all
-    sql = <<-SQL
-      SELECT *
-      FROM dogs
-    SQL
- 
-    DB[:conn].execute(sql).map do |row|
-      self.new_from_db(row)
-    end
   end
+
+  # def self.all
+  #   sql = <<-SQL
+  #     SELECT *
+  #     FROM dogs
+  #   SQL
+ 
+  #   DB[:conn].execute(sql).map do |row|
+  #     self.new_from_db(row)
+  #   end
+  # end
   
   def self.find_by_name(name)
     sql = "SELECT * FROM dogs WHERE name = ?"
