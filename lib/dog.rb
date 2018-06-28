@@ -1,9 +1,9 @@
 class Dog 
   
-  attr_accessor :name, :breed 
-  attr_reader :id
+  attr_accessor :name, :breed, :id
   
-  def initialize(h, id =nil)
+  
+  def initialize(h, id=nil)
     h.each {|k,v| public_send("#{k}=",v)}
     @id = id
   end
