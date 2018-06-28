@@ -45,12 +45,12 @@ end
   def self.create(name, breed)
     dog = Dog.new(name, breed)
     dog.save
-    student
+    dog
   end
   
   def self.new_from_db(row)
-    new_student = Student.new(row[0], row[1], row[2])
-    new_student
+    new_dog = Dog.new(row[0], row[1], row[2])
+    new_dog
    # new_student = self.new(row)
    # new_student.id = row[0]
    # new_student.name =  row[1]
@@ -61,7 +61,7 @@ end
   def self.all
     sql = <<-SQL
       SELECT *
-      FROM students
+      FROM dog
     SQL
  
     DB[:conn].execute(sql).map do |row|
@@ -70,14 +70,14 @@ end
   end
   
   def self.find_by_name(name)
-    sql = "SELECT * FROM students WHERE name = ?"
+    sql = "SELECT * FROM dogs WHERE name = ?"
     result = DB[:conn].execute(sql, name)[0]
-    Student.new(result[0], result[1], result[2])
+    Dog.new(result[0], result[1], result[2])
   end
   
   def update
-    sql = "UPDATE students SET name = ?, grade = ? WHERE id = ?"
-    DB[:conn].execute(sql, self.name, self.grade, self.id)
+    sql = "UPDATE dogs SET name = ?, breed = ? WHERE id = ?"
+    DB[:conn].execute(sql, self.name, self.breed, self.id)
   end
   
 end 
