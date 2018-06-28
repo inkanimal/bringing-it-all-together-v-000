@@ -61,7 +61,7 @@ end
   def self.all
     sql = <<-SQL
       SELECT *
-      FROM dog
+      FROM dogs
     SQL
  
     DB[:conn].execute(sql).map do |row|
