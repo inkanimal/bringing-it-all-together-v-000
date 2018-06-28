@@ -54,9 +54,9 @@ end
       dog_data = song[0]
       dog = Song.new(dog_data[0], dog_data[1], dog_data[2])
     else
-      song = self.create(name: name, breed: breed)
+      dog = self.create(name: name, breed: breed)
     end
-    breed
+    dog
   end
   
   def self.new_from_db(row)
