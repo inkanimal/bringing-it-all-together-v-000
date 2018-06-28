@@ -69,21 +69,11 @@ class Dog
     new_dog
   end
 
-  # def self.all
-  #   sql = <<-SQL
-  #     SELECT *
-  #     FROM dogs
-  #   SQL
  
-  #   DB[:conn].execute(sql).map do |row|
-  #     self.new_from_db(row)
-  #   end
-  # end
-  
   def self.find_by_name(name)
     sql = "SELECT * FROM dogs WHERE name = ?"
     result = DB[:conn].execute(sql, name)[0]
-    Dog.new(result[0], result[1], result[2])
+    Dog.new({name: result[1], breed: result[2]}, result[0])
   end
   
   def update
